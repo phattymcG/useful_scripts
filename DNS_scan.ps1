@@ -1,5 +1,4 @@
 # returns IPV4 addresses
-# DNS_scan.ps1 officecdn.microsoft.com.edgesuite.net 8.8.8.8
 
 param(
     [string]$dns_server = "1.1.1.1",
