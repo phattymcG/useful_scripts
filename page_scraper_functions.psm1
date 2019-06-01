@@ -57,3 +57,42 @@ catch
     $_.Exception.Message + " for " + $link
     }
 }
+
+function sleepBetween {
+
+param (
+[ref][int]$SleepCounter
+,[int]$minsleep
+,[int]$maxsleep
+,[bool]$message
+)
+
+If (($SleepCounter.Value % 5) -lt 5)
+{
+    $maxsleep=$maxsleep / 2
+} 
+else
+{
+    $minsleep=$minsleep * 2
+}
+
+$SleepTime = Get-Random -minimum $minsleep -maximum $maxsleep
+
+if ($message) { sleepBetweenRunning $SleepTime }
+
+Start-Sleep -s $SleepTime
+
+($SleepCounter.Value)++
+
+}
+
+
+function sleepBetweenRunning {
+
+param (
+[int]$seconds
+)
+
+Write-Output "Sleeping for $($seconds) seconds..."
+
+}
