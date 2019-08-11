@@ -16,7 +16,7 @@ show_iptables() {
   local table=$1
   local chain=$2
   echo -e "${table}\n"
-  iptables -t ${table} -L ${chain} -vn;
+  iptables -t ${table} -L ${chain} -vn --line-numbers;
   echo
 }
 
