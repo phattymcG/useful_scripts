@@ -1,4 +1,5 @@
 #!/bin/bash
+# all scans are parallel!
 
 #ping sweep:
 
@@ -6,6 +7,12 @@ for ip in $(seq 1 254); do (ping -c 1 10.11.1.$ip &); done | grep 'bytes from' |
 
 #-- alternative to create separate files: 
 for ip in $(seq 1 2); do (echo -e for 10.11.1.$ip\\n; ping -c 1 10.11.1.$ip &) >> ./test/10.11.1.${ip}_blah.txt ; done
+
+
+#nc sweep for specific port:
+
+for y in $(seq 0 10); do for x in $(seq 1 254); do (nc -zvnw 1 10.11.$y.$x 110 2>&1 | grep open &); done; done
+
 
 #nmap sweep for specific port:
 
